@@ -16,18 +16,22 @@ public class User {
     @Setter
     private String name;
 
-    public User(String id, String password) {
+    @Getter
+    private final Role role;
+
+    public User(String id, String password, Role role) {
         this.id = id;
         this.password = password;
+        this.role = role;
     }
 
-    public static User create(String id, String password) {
-        return new User(id, password);
+    public static User create(String id, String password, Role role) {
+        return new User(id, password, role);
     }
 
     //  비밀번호를 마스킹한 새 User 객체를 생성
     public static User constructPasswordMaskedUser(User user) {
-        User newUser = User.create(user.getId(), MASK);
+        User newUser = User.create(user.getId(), MASK, user.getRole());
         newUser.setName(user.getName());
         return newUser;
     }

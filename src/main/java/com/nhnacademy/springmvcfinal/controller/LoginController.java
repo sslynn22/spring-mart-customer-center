@@ -1,5 +1,7 @@
 package com.nhnacademy.springmvcfinal.controller;
 
+import com.nhnacademy.springmvcfinal.domain.Role;
+import com.nhnacademy.springmvcfinal.domain.User;
 import com.nhnacademy.springmvcfinal.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,16 +43,21 @@ public class LoginController {
                           ModelMap modelMap) {
         if (userRepository.matches(id, pwd)) {
             HttpSession session = request.getSession(true);
-            session.setAttribute("userId", id); // 실제 사용자 정보 저장
+            User user = userRepository.getUser(id);
+            session.setAttribute("user", user);
 
             Cookie cookie = new Cookie("JSESSIONID", session.getId());
             response.addCookie(cookie);
 
             modelMap.addAttribute("id", session.getId());
-            return "로그인 성공하면 이동할 페이지";
+
+            if (user.getRole() == Role.ADMIN) {
+                return "redirect:/admin";
+            } else {
+                return "redirect:/customer";
+            }
         } else {
             return "redirect:LoginForm";
         }
-
     }
 }

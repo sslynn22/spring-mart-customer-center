@@ -1,5 +1,6 @@
 package com.nhnacademy.springmvcfinal.repository;
 
+import com.nhnacademy.springmvcfinal.domain.Role;
 import com.nhnacademy.springmvcfinal.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -13,9 +14,9 @@ public class UserRepositoryImpl implements UserRepository {
     private final Map<String, User> userMap = new HashMap<>();
 
     public UserRepositoryImpl() {
-        userMap.put("joo", User.create("joo", "0924"));
-        userMap.put("seo", User.create("seo", "0202"));
-        userMap.put("v", User.create("v", "1230"));
+        userMap.put("joo", User.create("joo", "0924", Role.CUSTOMER));
+        userMap.put("seo", User.create("seo", "0202", Role.ADMIN));
+        userMap.put("v", User.create("v", "1230", Role.CUSTOMER));
     }
 
     @Override
