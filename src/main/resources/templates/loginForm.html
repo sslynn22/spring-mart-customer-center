@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <form th:action="@{/login}" method="post">
+        <label th:text="#{login.id}">ID</label>: <input type="text" name="id"> <br/>
+        <label th:text="#{login.pwd}">PWD</label>: <input type="password" name="pwd"> <br/>
+        <input type="submit" th:value="#{login.submit}" value="Login"/>
+    </form>
+</body>
+
+<!-- 한국어, 영어 언어 변경 기능-->
+<br/>
+<form method="get" th:action="@{/login}">
+    <select name="locale" onchange="this.form.submit()">
+        <option value="en" th:selected="${#locale.language == 'en'}">English</option>
+        <option value="ko" th:selected="${#locale.language == 'ko'}">한국어</option>
+    </select>
+</form>
+</html>
