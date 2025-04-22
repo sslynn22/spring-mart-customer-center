@@ -5,6 +5,34 @@
     <title>내 문의 목록</title>
 </head>
 <body>
-    <h2> 고객 페이지임 구현 어떻게 하지 </h2>
+<h2><span th:text="${user.id}">고객</span>, 고객 문의 안내 페이지</h2>
+<br/>
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+    <tr>
+        <th>제목</th>
+        <th>분류</th>
+        <th>작성일시</th>
+        <th>답변 여부</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts}">
+        <td>
+            <a th:href="@{'/cs/inquiry/' + ${post.postId}}" th:text="${post.title}">제목</a>
+        </td>
+        <td th:text="${post.category}">분류</td>
+        <td th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</td>
+        <td th:text="${post.answered ? '답변 완료' : '답변 대기'}">답변여부</td>
+    </tr>
+    <tr th:if="${posts.size() == 0}">
+        <td colspan="4">문의한 글이 없습니다.</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href="@{/cs/inquiry}">
+    <button>문의하기</button>
+</a>
 </body>
 </html>

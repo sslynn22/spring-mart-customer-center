@@ -14,9 +14,17 @@ public class UserRepositoryImpl implements UserRepository {
     private final Map<String, User> userMap = new HashMap<>();
 
     public UserRepositoryImpl() {
-        userMap.put("joo", User.create("joo", "0924", Role.CUSTOMER));
-        userMap.put("seo", User.create("seo", "0202", Role.ADMIN));
-        userMap.put("v", User.create("v", "1230", Role.CUSTOMER));
+        User joo = User.create("joo", "0924", Role.CUSTOMER);
+        joo.setName("주형");
+        userMap.put("joo", joo);
+
+        User seo = User.create("seo", "0202", Role.ADMIN);
+        seo.setName("서인");
+        userMap.put("seo", seo);
+
+        User v = User.create("v", "1230", Role.CUSTOMER);
+        v.setName("태형");
+        userMap.put("v", v);
     }
 
     @Override

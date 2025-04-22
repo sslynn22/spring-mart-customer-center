@@ -15,7 +15,7 @@ import java.util.Locale;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     @Bean // LocaleResolver 설정
-    public LocaleRㅓesolver localeResolver() {
+    public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(Locale.ENGLISH);
         return localeResolver;

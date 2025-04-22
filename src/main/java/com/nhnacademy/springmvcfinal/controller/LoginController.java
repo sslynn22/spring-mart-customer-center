@@ -52,7 +52,7 @@ public class LoginController {
             modelMap.addAttribute("id", session.getId());
 
             if (user.getRole() == Role.ADMIN) {
-                return "redirect:/admin";
+                return "redirect:/admin/inquiries";
             } else {
                 return "redirect:/customer";
             }
